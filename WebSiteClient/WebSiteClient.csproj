@@ -275,6 +275,7 @@
     <Content Include="Views\UserApIDemo\Index.cshtml" />
     <Content Include="Views\UserApIDemo\Create.cshtml" />
     <Content Include="Views\UserApIDemo\Details.cshtml" />
+    <Content Include="Views\UserApIDemo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

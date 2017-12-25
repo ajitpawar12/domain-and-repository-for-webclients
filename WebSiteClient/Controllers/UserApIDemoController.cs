@@ -129,7 +129,7 @@ namespace WebSiteClient.Controllers
                 var content = new StringContent(userData, Encoding.UTF8, "application/json");
                 if (userData != null)
                 {
-                    var response = await _httpClient.PutAsync("user/adduser", content);
+                    var response = await _httpClient.PutAsync("user/updateuser", content);
                     if (response.IsSuccessStatusCode)
                     {
                         //allUsers = JsonConvert.DeserializeObject<List<User>>(content);
