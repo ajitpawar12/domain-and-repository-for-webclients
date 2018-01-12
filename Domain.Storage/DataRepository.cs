@@ -31,25 +31,28 @@ namespace Domain.Storage
 
         public void UpdateUser(int id, User user)
         {
-            var userdetails = _context.Users.Single(x=>x.UserId==id);
-            userdetails.FirstName=user.FirstName;
-            userdetails.LastName = user.LastName;
-            userdetails.Email = user.Email;
+            var userdetails = _context.Users.SingleOrDefault(x=>x.UserId==id);
+            if (userdetails != null)
+            {
+                userdetails.FirstName=user.FirstName;
+                userdetails.LastName = user.LastName;
+                userdetails.Email = user.Email;
+            }
             _context.SaveChanges();
 
         }
 
         public void DeleteUser(int id)
         {
-            var userdetails = _context.Users.Single(x => x.UserId == id);
+            var userdetails = _context.Users.SingleOrDefault(x => x.UserId == id);
 
-            _context.Users.Remove(userdetails);
+            if (userdetails != null) _context.Users.Remove(userdetails);
             _context.SaveChanges();
         }
 
         public User UserDetails(int id)
         {
-            return _context.Users.Single(x => x.UserId == id);
+            return _context.Users.SingleOrDefault(x => x.UserId == id);
         }
 
         public List<User> AllUsers()
