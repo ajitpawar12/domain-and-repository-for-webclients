@@ -64,5 +64,11 @@ namespace WebSiteClient.Controllers
             return View(userDetails);
         }
 
+        public ActionResult Update()
+        {
+            //return RedirectToAction("Index", "UserWebDemo");
+            return View();
+        }
+
     }
 }
