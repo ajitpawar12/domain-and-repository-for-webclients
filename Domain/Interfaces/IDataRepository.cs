@@ -15,5 +15,13 @@ namespace Domain.Interfaces
         void DeleteUser(int id);
         User UserDetails(int id);
         List<User> AllUsers();
-   }
+
+        //Product Methods
+        void AddProduct(User user);
+        void UpdateProduct(int id, User user);
+        void DeleteProduct(int id);
+        Product ProductDetails(int id);
+        List<Product> AllProducts();
+
+    }
 }

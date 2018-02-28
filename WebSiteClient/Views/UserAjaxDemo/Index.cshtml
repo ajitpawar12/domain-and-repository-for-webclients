@@ -92,7 +92,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: './Create',
+                    url: '@Url.Action("Create","UserAjaxDemo")',
                     data: {
                         FirstName: firstname,
                         LastName: lastname,
@@ -100,8 +100,9 @@
                     },
                     datatype: 'json',
                     success: function (data) {
-                        if (data === "") {
-                            alert("success");
+                        if (data.status === "Success") {
+                            var url = '@Url.Action("Index","UserAjaxDemo")';
+                            window.location = encodeURIComponent(url);
                         }
                     },
                     beforeSend: function () {

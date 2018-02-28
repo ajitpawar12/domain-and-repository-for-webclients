@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserAjaxDemoController.cs" />
     <Compile Include="Controllers\UserApIDemoController.cs" />
     <Compile Include="Controllers\UserWebDemoController.cs" />
@@ -218,6 +219,9 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Product\CreateProductVM.cs" />
+    <Compile Include="ViewModels\Product\EditProductVM.cs" />
+    <Compile Include="ViewModels\Product\ProductBaseModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -284,6 +288,9 @@
     <Content Include="Views\UserApIDemo\Details.cshtml" />
     <Content Include="Views\UserApIDemo\Edit.cshtml" />
     <Content Include="Views\UserAjaxDemo\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

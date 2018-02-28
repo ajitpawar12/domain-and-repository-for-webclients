@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="DomainConstants.cs" />
     <Compile Include="Interfaces\IDataRepository.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

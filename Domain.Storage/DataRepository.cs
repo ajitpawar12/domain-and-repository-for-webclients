@@ -59,5 +59,30 @@ namespace Domain.Storage
         {
             return _context.Users.ToList();
         }
+
+        public void AddProduct(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateProduct(int id, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProduct(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product ProductDetails(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> AllProducts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

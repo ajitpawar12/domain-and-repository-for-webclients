@@ -27,7 +27,7 @@ namespace WebSiteClient.Controllers
         public JsonResult Create(User user)
         {
             _Repository.AddUser(user);
-            return Json("");
+            return Json(new {status="Success"},JsonRequestBehavior.AllowGet);
         }
     }
 }
