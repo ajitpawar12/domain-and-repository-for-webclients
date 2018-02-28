@@ -17,11 +17,17 @@ namespace Domain.Interfaces
         List<User> AllUsers();
 
         //Product Methods
-        void AddProduct(User user);
-        void UpdateProduct(int id, User user);
+        void AddProduct(Product product);
+        void UpdateProduct(int id, Product product);
         void DeleteProduct(int id);
         Product ProductDetails(int id);
         List<Product> AllProducts();
 
+        //Caterogy Methods
+        List<Category> AllCategories();
+
+        //Sub Categories
+        List<SubCategory> AllSubcateCategories();
+        List<SubCategory> GetSubCategoriesByCategoryId(int? id);
     }
 }

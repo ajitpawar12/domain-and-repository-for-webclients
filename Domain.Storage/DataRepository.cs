@@ -60,29 +60,59 @@ namespace Domain.Storage
             return _context.Users.ToList();
         }
 
-        public void AddProduct(User user)
+        public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.Products.Add(product);
+            _context.SaveChanges();
         }
 
-        public void UpdateProduct(int id, User user)
+        public void UpdateProduct(int id, Product product)
         {
-            throw new NotImplementedException();
+            var pDetails = _context.Products.SingleOrDefault(x => x.ProductId == id);
+            if (pDetails != null)
+            {
+                pDetails.Name = product.Name;
+                pDetails.Description = product.Description;
+                pDetails.Quantity = product.Quantity;
+                pDetails.Price = product.Price;
+                pDetails.CategoryId = product.CategoryId;
+                pDetails.SubCategoryId = product.SubCategoryId;
+                pDetails.ModifyDate = DateTime.Now;
+                _context.SaveChanges();
+            }
         }
 
         public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            var pDetails = _context.Products.SingleOrDefault(x => x.ProductId == id);
+            if (pDetails != null)
+                _context.Products.Remove(pDetails);
+            _context.SaveChanges();
         }
 
         public Product ProductDetails(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.SingleOrDefault(x => x.ProductId == id);
         }
 
         public List<Product> AllProducts()
         {
-            throw new NotImplementedException();
+            return _context.Products.Include("Category").Include("SubCategory").ToList();
+        }
+
+        public List<Category> AllCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public List<SubCategory> AllSubcateCategories()
+        {
+            return _context.SubCategories.ToList();
+        }
+
+        public List<SubCategory> GetSubCategoriesByCategoryId(int? id)
+        {
+            return _context.SubCategories.Where(x => x.CategoryId == id).ToList();
         }
     }
 }

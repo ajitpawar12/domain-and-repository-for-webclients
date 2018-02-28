@@ -29,5 +29,31 @@ namespace WebSiteClient.Controllers
             _Repository.AddUser(user);
             return Json(new {status="Success"},JsonRequestBehavior.AllowGet);
         }
+        public JsonResult Edit(int id)
+        {
+            var userDetails=_Repository.UserDetails(id);
+            return Json(new { status = "Success",Details=userDetails }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Update(User user)
+        {
+            _Repository.UpdateUser(user.UserId,user);
+            return Json(new { status = "Success" }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            _Repository.DeleteUser(id);
+            return Json(new { status = "Success" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult LoadAllUsers()
+        {
+            var allusers = _Repository.AllUsers();
+            return Json(new {status="Success",AllUsers=allusers}, JsonRequestBehavior.AllowGet);
+        }
+        
+
     }
 }

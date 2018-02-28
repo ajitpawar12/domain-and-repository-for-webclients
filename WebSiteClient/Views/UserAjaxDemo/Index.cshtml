@@ -5,10 +5,6 @@
 }
 
 <h2>Index</h2>
-@*<p>
-    <button id="Createdata" class="btn btn-primary">Create Button</button>
-</p>*@
-
 <div class="form-horizontal">
     <h4>User</h4>
     <hr />
@@ -16,100 +12,98 @@
     <div class="form-group">
         @Html.Label("FirstName", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="text" id="firstname" class="form-control" />            
+            <input type="text" id="firstname" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Last Name", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="text" id="lastname" class="form-control" /> 
-            
+            <input type="text" id="lastname" class="form-control" />
+
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="text" id="email" class="form-control" /> 
+            <input type="text" id="email" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="button" id="submitdata" value="Create" class="btn btn-default" />
+            <input type="button" id="updatedata" data-userId="" value="Update" style="display: none" class="btn btn-default" />
+            <input type="button" id="canceldata" value="Cancel" class="btn btn-default" />
         </div>
     </div>
 </div>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <button id="Editdata" class="btn btn-primary" data-userId="@item.UserId">Edit</button> |
-                <button id="Detailsdata" class="btn btn-primary" data-userId="@item.UserId">Details</button> |
-                <button id="Deletedata" class="btn btn-primary" data-userId="@item.UserId">Delete</button>
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <button class="btn btn-primary edituser" data-userid="@item.UserId">Edit</button> |
+                    <button class="btn btn-primary deleteuser" data-userid="@item.UserId">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @section scripts{
 
     <script>
-
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             //create data
-            $("#submitdata").click(function ()
-            {
+            $("#submitdata").on('click', function () {
                 var firstname = $("#firstname").val();
                 var lastname = $("#lastname").val();
                 var email = $("#email").val();
-                alert(firstname + lastname + email);
-
                 $.ajax({
                     type: 'POST',
                     url: '@Url.Action("Create","UserAjaxDemo")',
                     data: {
                         FirstName: firstname,
                         LastName: lastname,
-                        Email:email
+                        Email: email
                     },
                     datatype: 'json',
                     success: function (data) {
                         if (data.status === "Success") {
-                            var url = '@Url.Action("Index","UserAjaxDemo")';
-                            window.location = encodeURIComponent(url);
+                            loadAllUsers();
                         }
+
                     },
                     beforeSend: function () {
-                        
+
                     },
                     complete: function () {
-                        
+
                     },
                     error: function () {
                         alert("Error while retriving data !");
@@ -118,20 +112,135 @@
             });
 
             //Edit data
-            $("#Editdata").click(function () {
-                alert("edit");
+            $(document).on('click', '.edituser', function () {
+                var userId = $(this).attr('data-userid');
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("Edit", "UserAjaxDemo")',
+                    datatype: 'json',
+                    data: {
+                        id: userId
+                    },
+                    success: function (data) {
+                        if (data.status === "Success") {
+                            $("#firstname").val(data.Details.FirstName);
+                            $("#lastname").val(data.Details.LastName);
+                            $("#email").val(data.Details.Email);
+                            $("#submitdata").hide();
+                            $("#updatedata").show();
+                            $("#updatedata").attr('data-userId', data.Details.UserId);
+                        }
+                    },
+                    beforeSend: function () {
 
+                    },
+                    complete: function () {
+
+                    },
+                    error: function () {
+                        alert("Error while retriving data !");
+                    }
+                });
+
+
+            });
+            //Update data
+            $("#updatedata").on('click', function () {
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                var email = $("#email").val();
+                var userId = $(this).attr('data-userId');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Update","UserAjaxDemo")',
+                    data: {
+                        FirstName: firstname,
+                        LastName: lastname,
+                        Email: email,
+                        UserId: userId
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.status === "Success") {
+                            $("#submitdata").show();
+                            $("#updatedata").hide();
+                            loadAllUsers();
+                        }
+
+                    },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+
+                    },
+                    error: function () {
+                        alert("Error while retriving data !");
+                    }
+                });
             });
             //Delete data
-            $("#Deletedata").click(function () {
-                alert("delete");
+            $(document).on('click', '.deleteuser', function () {
+                var userId = $(this).attr('data-userid');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Delete","UserAjaxDemo")',
+                    data: {
+                        id: userId
+                    },
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.status === "Success") {
+                            loadAllUsers();
+                        }
+
+                    },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+
+                    },
+                    error: function () {
+                        alert("Error while retriving data !");
+                    }
+                });
 
             });
-            //Details data
-            $("#Detailsdata").click(function () {
-                alert("details");
-
+            // cancel data
+            $("#canceldata").on('click', function () {
+                $("#firstname").val('');
+                $("#lastname").val('');
+                $("#email").val('');
             });
+            //Load all users
+            function loadAllUsers() {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("LoadAllUsers", "UserAjaxDemo")',
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data.status === "Success") {
+                            $("#firstname").val('');
+                            $("#lastname").val('');
+                            $("#email").val('');
+                            $("table tbody").html('');
+                            for (var i = 0; i < data.AllUsers.length; i++) {
+                                $("table tbody").append('<tr><td>' + data.AllUsers[i].FirstName + '</td><td>' + data.AllUsers[i].LastName + '</td><td>' + data.AllUsers[i].Email + '</td><td><button class="btn btn-primary edituser" data-userid="' + data.AllUsers[i].UserId + '">Edit</button> |<button class="btn btn-primary deleteuser" data-userid="' + data.AllUsers[i].UserId + '">Delete</button></td></tr>');
+                            }
+                        }
+                    },
+                    beforeSend: function () {
+
+                    },
+                    complete: function () {
+
+                    },
+                    error: function () {
+                        alert("Error while retriving data !");
+                    }
+                });
+            }
         });
     </script>
-    } 
+} 

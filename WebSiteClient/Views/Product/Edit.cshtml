@@ -9,6 +9,7 @@
 {
     <hr />
     @Html.HiddenFor(model=>model.ProductId)
+    @Html.HiddenFor(model=>model.AddDate)
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
