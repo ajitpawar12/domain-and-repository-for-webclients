@@ -207,6 +207,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserAjaxDemoController.cs" />
     <Compile Include="Controllers\UserApIDemoController.cs" />
     <Compile Include="Controllers\UserWebDemoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -282,6 +283,7 @@
     <Content Include="Views\UserApIDemo\Create.cshtml" />
     <Content Include="Views\UserApIDemo\Details.cshtml" />
     <Content Include="Views\UserApIDemo\Edit.cshtml" />
+    <Content Include="Views\UserAjax\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
