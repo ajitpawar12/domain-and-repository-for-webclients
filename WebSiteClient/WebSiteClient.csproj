@@ -283,7 +283,7 @@
     <Content Include="Views\UserApIDemo\Create.cshtml" />
     <Content Include="Views\UserApIDemo\Details.cshtml" />
     <Content Include="Views\UserApIDemo\Edit.cshtml" />
-    <Content Include="Views\UserAjax\Index.cshtml" />
+    <Content Include="Views\UserAjaxDemo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
