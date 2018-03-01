@@ -123,7 +123,7 @@ namespace WebSiteClient.Controllers
         public void Populatelookups(ProductBaseModel model)
         {
             //Fill CategoryList
-            var categoryList = _repository.AllSubcateCategories();
+            var categoryList = _repository.AllCategories();
             var cList = categoryList.Select(x => new SelectListItem
             {
                 Text = x.Name,
