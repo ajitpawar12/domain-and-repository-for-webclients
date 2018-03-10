@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Storage", "Domain.Storage\Domain.Storage.csproj", "{35E7242A-ADFC-46D9-92E7-DF0A339C72F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Identity", "Domain.Identity\Domain.Identity.csproj", "{137180A2-363A-47D0-B0EB-8EFC85145698}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{35E7242A-ADFC-46D9-92E7-DF0A339C72F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E7242A-ADFC-46D9-92E7-DF0A339C72F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E7242A-ADFC-46D9-92E7-DF0A339C72F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{137180A2-363A-47D0-B0EB-8EFC85145698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{137180A2-363A-47D0-B0EB-8EFC85145698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{137180A2-363A-47D0-B0EB-8EFC85145698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{137180A2-363A-47D0-B0EB-8EFC85145698}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
