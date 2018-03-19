@@ -75,12 +75,15 @@
         }
     </tbody>
 </table>
-@section scripts{
+@section scripts
+    {
 
     <script>
         $(document).ready(function () {
+            
             //create data
-            $("#submitdata").on('click', function () {
+            $("#submitdata").on('click', function ()
+            {
                 var firstname = $("#firstname").val();
                 var lastname = $("#lastname").val();
                 var email = $("#email").val();
@@ -220,12 +223,14 @@
                     url: '@Url.Action("LoadAllUsers", "UserAjaxDemo")',
                     datatype: 'json',
                     success: function (data) {
-                        if (data.status === "Success") {
+                        if (data.status === "Success")
+                        {
                             $("#firstname").val('');
                             $("#lastname").val('');
                             $("#email").val('');
                             $("table tbody").html('');
-                            for (var i = 0; i < data.AllUsers.length; i++) {
+                            for (var i = 0; i < data.AllUsers.length; i++)
+                            {
                                 $("table tbody").append('<tr><td>' + data.AllUsers[i].FirstName + '</td><td>' + data.AllUsers[i].LastName + '</td><td>' + data.AllUsers[i].Email + '</td><td><button class="btn btn-primary edituser" data-userid="' + data.AllUsers[i].UserId + '">Edit</button> |<button class="btn btn-primary deleteuser" data-userid="' + data.AllUsers[i].UserId + '">Delete</button></td></tr>');
                             }
                         }
