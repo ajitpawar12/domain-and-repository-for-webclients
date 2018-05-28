@@ -246,6 +246,48 @@
                     }
                 });
             }
+
+
+            //add textarea value
+            $("#firstname").on('input', function ()
+            {
+                var text = $("#firstname").val().length;
+                console.log(text);
+                var mvalue = text % 4;
+                console.log(mvalue);
+                if (mvalue === 0) {
+                    alert(text);
+                    @*var firstname = $("#firstname").val();
+                    var lastname = $("#lastname").val();
+                    var email = $("#email").val();
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Create","UserAjaxDemo")',
+                        data: {
+                            FirstName: firstname,
+                            LastName: lastname,
+                            Email: email
+                        },
+                        datatype: 'json',
+                        success: function (data) {
+                            if (data.status === "Success") {
+                                loadAllUsers();
+                            }
+
+                        },
+                        beforeSend: function () {
+
+                        },
+                        complete: function () {
+
+                        },
+                        error: function () {
+                            alert("Error while retriving data !");
+                        }
+                    });*@
+                }
+
+            });
         });
     </script>
 } 

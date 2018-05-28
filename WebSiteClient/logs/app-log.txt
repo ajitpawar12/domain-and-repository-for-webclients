@@ -1,0 +1,35 @@
+2018-05-28 13:36:09.8135|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-28 13:36:09.8616|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-28 13:36:09.8616|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:36:09.8616|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-28 13:36:09.8616|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-28 13:36:09.8616|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-28 13:36:09.8616|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:38:42.4934|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-28 13:38:42.5423|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-28 13:38:42.5423|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:38:42.5423|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-28 13:38:42.5423|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-28 13:38:42.5423|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-28 13:38:42.5423|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:41:08.8279|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-28 13:41:08.8640|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-28 13:41:08.8640|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:41:08.8640|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-28 13:41:08.8640|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-28 13:41:08.8640|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-28 13:41:08.8640|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:48:57.3008|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-28 13:48:57.3389|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-28 13:48:57.3459|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 13:48:57.3459|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-28 13:48:57.3459|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-28 13:48:57.3459|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-28 13:48:57.3459|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 14:00:17.6020|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-28 14:00:17.6441|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-28 14:00:17.6441|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-28 14:00:17.6441|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-28 14:00:17.6441|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-28 14:00:17.6441|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-28 14:00:17.6572|INFO|WebSiteClient.Controllers.HomeController|Sample informational message

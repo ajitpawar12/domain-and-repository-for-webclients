@@ -1,0 +1,7 @@
+2018-05-15 13:33:55.7156|TRACE|WebSiteClient.Controllers.HomeController|Sample trace message
+2018-05-15 13:33:55.8825|DEBUG|WebSiteClient.Controllers.HomeController|Sample debug message
+2018-05-15 13:33:55.8825|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
+2018-05-15 13:33:55.8825|WARN|WebSiteClient.Controllers.HomeController|Sample warning message
+2018-05-15 13:33:55.8865|ERROR|WebSiteClient.Controllers.HomeController|Sample error message
+2018-05-15 13:33:55.8865|FATAL|WebSiteClient.Controllers.HomeController|Sample fatal error message
+2018-05-15 13:33:55.8865|INFO|WebSiteClient.Controllers.HomeController|Sample informational message
