@@ -236,6 +236,7 @@
     <Compile Include="Controllers\UserAjaxDemoController.cs" />
     <Compile Include="Controllers\UserApIDemoController.cs" />
     <Compile Include="Controllers\UserWebDemoController.cs" />
+    <Compile Include="CustomFilters\ActionLogFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

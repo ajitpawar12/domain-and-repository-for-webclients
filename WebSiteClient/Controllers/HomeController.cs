@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.Storage.Context;
 using NLog;
+using WebSiteClient.CustomFilters;
 
 namespace WebSiteClient.Controllers
 {
+    [ActionLogFilter]
     public class HomeController : Controller
     {
        // private static Logger logger = LogManager.GetCurrentClassLogger();
