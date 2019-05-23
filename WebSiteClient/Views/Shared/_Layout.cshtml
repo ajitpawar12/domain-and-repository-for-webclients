@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-mocks.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -25,7 +29,8 @@
                     <li>@Html.ActionLink("User Web Demo", "Index", "UserWebDemo")</li>
                     <li>@Html.ActionLink("User API Demo", "Index", "UserApIDemo")</li>
                     <li>@Html.ActionLink("User Ajax Demo", "Index", "UserAjaxDemo")</li>
-                    <li>@Html.ActionLink("Products Demo", "Index", "Product")</li>
+                    <li>@Html.ActionLink("User AngularJS Demo", "Index", "UserAngularJSDemo")</li>
+                    <li>@Html.ActionLink("Products Demo", "Index", "Product")</li>                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

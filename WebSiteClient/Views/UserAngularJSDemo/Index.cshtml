@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div ng-app="moduleApp">
+    <div class="row" ng-controller="userController" ng-init="LoadAlluserData()">
+        <div class="container">
+            
+            <div class="col-l-12">
+                <input id="adduser" type="button" class="btn btn-info btn-sm" value="Add" ng-click="clkadduser()" />
+            </div>
+            <div class="col-lg-12">
+                <table ng-table="tableParams" class="table" show-filter="true">
+                    <tr ng-repeat="user in $data">
+                        <td title="'FirstName'" filter="{ FirstName: 'text'}" sortable="'FirstName'">
+                            {{user.FirstName}}
+                        </td>
+                        <td title="'LastName'" filter="{ LastName: 'text'}" sortable="'LastName'">
+                            {{user.LastName}}
+                        </td>
+
+                        <td title="'Email'" filter="{ Email: 'text'}" sortable="'Email'">
+                            {{user.Email}}
+                        </td>
+                        <td title="Edit">
+                            <input type="button" class="btn btn-primary btn-sm" value="Edit" ng-click="clkuseredit(user.UserId)" />
+                        </td>
+                        <td title="Delete">
+                            <input type="button" class="btn btn-danger btn-sm" value="Delete" ng-click="clkuserdelete(user.UserId)" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">{{OpName}} user</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <label> First Name</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="txtFirstName"  ng-model="userFirstName" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <label> Last Name</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" ng-model="userLastName" />
+                            </div>
+                            <div class="col-md-12">
+                                <label> Email</label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" id="txtEmail" ng-model="userEmail" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="hdnuserId" ng-model="userId" />
+                            <button id="btnSubmit" type="button" class="btn btn-default" data-dismiss="modal" ng-click="AddUpdateuser()">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var apiUrl = '@System.Configuration.ConfigurationManager.AppSettings["APIUrl"]';
+    var app = angular.module('moduleApp', ["ngTable"]);
+    app.controller('userController', ['$scope', '$log', '$http', 'NgTableParams', function ($scope, $log, $http, NgTableParams) {
+        $scope.Message = "Your are in user controller";
+        $log.log($scope.Message);
+        $scope.OpName = "Add";
+        $scope.userFirstName = '';
+        $scope.userLastName = '';
+        $scope.userEmail = '';
+        $scope.userId = '';
+
+        //=============Load All users Function============//
+        $scope.LoadAlluserData = function () {
+            //----------Get All user data call Start----------//
+            var GetAlluserSuccessCallback = function (response, status, headers, config) {
+                console.log(response.data);
+                console.log(response.status);
+                if (response.status ===200) {
+                    $log.log("Getting all users data status = " + response.data);
+                    $scope.tableParams = new NgTableParams({}, { dataset: response.data });
+                }
+                else {
+                    $log.warn("Error while retriving All users data !")
+                }
+            };
+            var GetAlluserErrorCallback = function (response, status, headers, config) {
+                $log.log(response);
+            }
+            $http.get(apiUrl + "/user/getalluser").then(GetAlluserSuccessCallback, GetAlluserErrorCallback);
+            //---------Get All user data call End-----------//
+
+        };
+
+        //==========Add new user Poppup Function=========//
+        $scope.clkadduser = function () {
+            $scope.OpName = "Add";
+            $scope.userFirstName = '';
+            $scope.userLastName = '';
+            $scope.userEmail = '';
+            $scope.userId = '';
+           $('#myModal').modal();
+        };
+
+        //=============user Edit Model Poppup Function==============//
+        $scope.clkuseredit = function (userId) {
+            //-------Get Single user Details call start-------//
+            var GetuserDetailsSuccessCallback = function (response, status, headers, config) {
+                $log.log(response.data);
+                $scope.OpName = "Update";
+                $scope.userFirstName=response.data.FirstName;
+                $scope.userLastName=response.data.LastName;                
+                $scope.userEmail = response.data.Email;
+                $scope.userId = response.data.UserId;
+                $('#myModal').modal();
+            };
+            var GetuserDetailsErrorCallback = function (response, status, headers, config) {
+                $log.log(response);
+            };
+            $http.get(apiUrl+"/user/getuserdetails?id=" + userId).then(GetuserDetailsSuccessCallback, GetuserDetailsErrorCallback);
+
+            //-------Get Single user Details call End-------//
+        };
+
+        //=============user Add and Edit Function==============//
+        $scope.AddUpdateuser = function () {
+            var sId = $scope.userId;
+            var userData = {
+                UserId: sId,
+                FirstName: $scope.userFirstName,
+                LastName: $scope.userLastName,
+                Email: $scope.userEmail
+            };
+
+            $log.log(userData);
+            if (sId == "" || sId == undefined) {
+                //-------------Add New user call Start----------//
+                var AddusersuccessCallback = function (response) {
+                    $log.log(response)
+                    alert("add Successfully !");
+                    $scope.LoadAlluserData();
+                };
+                var AddusererrorCallback = function (response) {
+                    $log.log(response)
+                };
+                $http.post(apiUrl + 'user/adduser', userData).then(AddusersuccessCallback, AddusererrorCallback);
+
+                //-------------Add New user call End----------//
+            }
+            else {
+                //-------------Update user call Start----------//
+                var UpdateusersuccessCallback = function (response) {
+                    $log.log(response.data)
+                    alert("update Successfully !");
+                    $scope.LoadAlluserData();
+                };
+                var UpdateusererrorCallback = function (response) {
+                    $log.log(response.data)
+                };
+                $http.put(apiUrl + '/user/updateuser', userData).then(UpdateusersuccessCallback, UpdateusererrorCallback);
+
+                //-------------Update user call End----------//
+            }
+        }
+
+        //==============Delete user Function============//
+        $scope.clkuserdelete = function (userId) {
+            var DeleteusersuccessCallback = function (response) {
+                $log.log(response.data)
+                alert("Delete Successfully !");
+                $scope.LoadAlluserData();
+            };
+            var DeleteusererrorCallback = function (response) {
+                $log.log(response.data)
+            };
+            $http.delete(apiUrl + 'user/deleteuser?id=' + userId).then(DeleteusersuccessCallback, DeleteusererrorCallback);
+        };
+    }]);
+
+</script>
